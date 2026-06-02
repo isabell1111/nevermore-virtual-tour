@@ -1,0 +1,289 @@
+﻿* {
+    box-sizing: border-box;
+}
+body {
+    background: red;
+}
+
+body {
+    margin: 0;
+    font-family: Georgia, "Times New Roman", serif;
+    background: #d9d9d9;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.screen {
+    display: none;
+    width: 100%;
+    justify-content: center;
+}
+
+    .screen.active {
+        display: flex;
+    }
+
+.phone-frame {
+    width: 100%;
+    max-width: 360px;
+    min-height: 640px;
+    background: #2f0a70;
+    border-radius: 18px;
+    padding: 14px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+}
+
+.purple-bg {
+    background: #2f0a70;
+}
+
+.dark-bg {
+    background: #14081f;
+}
+
+.top-image,
+.info-image,
+.welcome-image,
+.end-image {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+}
+
+.top-image {
+    height: 190px;
+    object-fit: cover;
+}
+
+.info-image {
+    height: 110px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.welcome-image,
+.end-image {
+    max-width: 100%;
+    margin: 40px auto 0 auto;
+    display: block;
+}
+
+.title-box {
+    width: 78%;
+    margin: -18px auto 14px auto;
+    background: #d9d9d9;
+    color: #1b1b1b;
+    text-align: center;
+    padding: 18px 14px;
+    border-radius: 4px;
+}
+
+    .title-box h1 {
+        margin: 0;
+        font-size: 1.15rem;
+        line-height: 1.35;
+        font-weight: normal;
+    }
+
+#info h2,
+.tour-title {
+    text-align: center;
+    margin: 8px 0 10px 0;
+    font-size: 1.7rem;
+    font-weight: normal;
+}
+
+.info-text-box {
+    background: #e7d7aa;
+    color: #1a1a1a;
+    padding: 16px 14px;
+    border-radius: 4px;
+    margin: 0 auto 14px auto;
+    width: 78%;
+    line-height: 1.4;
+    font-size: 0.9rem;
+}
+
+.bottom-row {
+    display: flex;
+    gap: 12px;
+    align-items: flex-end;
+    margin-top: 14px;
+}
+
+.logo-box {
+    width: 42%;
+    max-width: 120px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.buttons-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+button {
+    border: none;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #1a1a1a;
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    font-family: inherit;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+    button:hover {
+        transform: translateY(-2px);
+        background: #f2f2f2;
+    }
+
+.next-btn {
+    align-self: flex-end;
+    min-width: 90px;
+}
+
+
+
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.72);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 999;
+}
+
+    .popup.hidden {
+        display: none;
+    }
+
+.popup-content {
+    width: 100%;
+    max-width: 340px;
+    background: #1f1f1f;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+}
+
+    .popup-content h3 {
+        margin: 0;
+        padding: 18px 14px 8px 14px;
+        color: #ffffff;
+        font-size: 1.4rem;
+    }
+
+.popup-image {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    display: block;
+}
+
+.popup-buttons {
+    display: flex;
+}
+
+    .popup-buttons button {
+        flex: 1;
+        border-radius: 0;
+    }
+
+#welcome .next-btn,
+#end button,
+#tour .next-btn {
+    position: absolute;
+    right: 14px;
+    bottom: 14px;
+}
+
+@media (max-width: 420px) {
+    body {
+        padding: 0;
+    }
+
+    .phone-frame {
+        max-width: 100%;
+        min-height: 100vh;
+        border-radius: 0;
+    }
+
+    .tour-title {
+        font-size: 1.4rem;
+    }
+
+
+    #tour .phone-frame {
+        height: 640px;
+        overflow: hidden;
+    }
+
+        .phone-frame.dark-bg {
+  height: 640px;
+  overflow: hidden;
+}
+
+    .camera-wrapper {
+        position: relative;
+        width: 100%;
+        height: 220px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: black;
+        margin-top: 12px;
+    }
+
+#camera {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+    .camera-overlay {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(47, 10, 112, 0.92);
+        padding: 6px;
+        font-size: 0.7rem;
+        line-height: 1.15;
+    }
+
+
+    .location-thumb {
+        width: 100%;
+        height: 40px;
+        object-fit: contain;
+        object-position: center;
+        display: block;
+        margin-bottom: 6px;
+        background: #000;
+        border-radius: 6px;
+    }
+
+.tour-title {
+  font-size: 1.2rem;
+  margin: 0 0 8px 0;
+}
+
+#finishTourBtn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+}
+}

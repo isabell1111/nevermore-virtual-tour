@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nevermore Virtual Tour</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- HOME -->
+    <section id="home" class="screen active">
+        <div class="phone-frame">
+            <img src="images/home-bg.jpg" alt="Nevermore ingang" class="top-image">
+
+            <div class="title-box">
+                <h1>Virtuele tour over Nevermore Academy</h1>
+            </div>
+
+            <div class="bottom-row">
+                <img src="images/wednesday-logo.jpg" alt="Wednesday logo" class="logo-box">
+
+                <div class="buttons-column">
+                    <button id="infoBtn">Tourinformatie</button>
+                    <button id="startBtn">Start Virtuele tour</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INFO -->
+    <section id="info" class="screen">
+        <div class="phone-frame purple-bg">
+            <img src="images/info-top.jpg" alt="Nevermore locatie" class="info-image">
+
+            <h2>Tourinformatie</h2>
+
+            <div class="info-text-box">
+                <p>
+                    Ontdek de mysterieuze wereld van Nevermore tijdens deze virtuele tour.
+                    Verken bijzondere locaties, leer meer over verborgen geheimen en
+                    stap in de duistere sfeer van de school.
+                </p>
+            </div>
+
+            <button id="backHomeFromInfo">Terug naar Home</button>
+        </div>
+    </section>
+
+    <!-- WELCOME -->
+    <section id="welcome" class="screen">
+        <div class="phone-frame purple-bg center-screen">
+            <img src="images/welcome.jpg" alt="Welcome" class="welcome-image">
+            <button id="beginTourBtn" class="next-btn">Volgende</button>
+        </div>
+    </section>
+
+    <!--CAMERA TOUR-->
+    <section id="tour" class="screen">
+        <div class="phone-frame dark-bg">
+            <h2 id="locationTitle" class="tour-title">Nevermore Gate</h2>
+
+            <div class="camera-wrapper">
+                <video id="camera" autoplay playsinline></video>
+
+                <div class="camera-overlay">
+                    <img id="locationImage" src="images/location1.jpg" alt="Locatie" class="location-thumb">
+                    <p id="locationText">
+                        De poort van Nevermore vormt de mysterieuze ingang van de academie en zet direct de donkere sfeer van de school neer.
+                    </p>
+                </div>
+            </div>
+
+            <button id="finishTourBtn" class="next-btn">Klaar?</button>
+        </div>
+    </section>
+
+    <!-- END -->
+    <section id="end" class="screen">
+        <div class="phone-frame purple-bg center-screen">
+            <img src="images/end.jpg" alt="The End" class="end-image">
+            <button id="backToHomeBtn">Terug naar Startscherm</button>
+        </div>
+    </section>
+
+    <!-- POPUP -->
+    <div id="popup" class="popup hidden">
+        <div class="popup-content">
+            <h3>Ben je klaar voor de tour?</h3>
+            <img src="images/hand.jpg" alt="Hand" class="popup-image">
+            <div class="popup-buttons">
+                <button id="yesBtn">Ja</button>
+                <button id="noBtn">Nee</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
