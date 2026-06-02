@@ -1,121 +1,148 @@
-﻿function showScreen(screenId) {
-    document.querySelectorAll('.screen').forEach(screen => {
-        screen.classList.remove('active');
-    });
+function showScreen(screenId) {
+  document.querySelectorAll('.screen').forEach(screen => {
+    screen.classList.remove('active');
+  });
 
-    document.getElementById(screenId).classList.add('active');
+  const target = document.getElementById(screenId);
+  if (target) {
+    target.classList.add('active');
+  }
 }
 
 function openPopup() {
-    document.getElementById('popup').classList.remove('hidden');
+  const popup = document.getElementById('popup');
+  if (popup) popup.classList.remove('hidden');
 }
 
 function closePopup() {
-    document.getElementById('popup').classList.add('hidden');
+  const popup = document.getElementById('popup');
+  if (popup) popup.classList.add('hidden');
 }
 
 async function startCamera() {
-    const video = document.getElementById('camera');
+  const video = document.getElementById('camera');
+  if (!video) return;
 
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-            video: { facingMode: "environment" },
-            audio: false
-        });
-        video.srcObject = stream;
-    } catch (error) {
-        console.error("Camera kon niet worden geopend:", error);
-        alert("De camera kon niet worden geopend op dit apparaat of in deze browser.");
-    }
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "environment" },
+      audio: false
+    });
+    video.srcObject = stream;
+  } catch (error) {
+    console.error("Camera kon niet worden geopend:", error);
+    alert("De camera kon niet worden geopend op dit apparaat of in deze browser.");
+  }
 }
 
 function stopCamera() {
-    const video = document.getElementById('camera');
-    const stream = video.srcObject;
+  const video = document.getElementById('camera');
+  if (!video) return;
 
-    if (stream) {
-        stream.getTracks().forEach(track => track.stop());
-        video.srcObject = null;
-    }
+  const stream = video.srcObject;
+  if (stream) {
+    stream.getTracks().forEach(track => track.stop());
+    video.srcObject = null;
+  }
 }
 
 const locations = [
-    {
-        title: "Nevermore Gate",
-        image: "images/location1.jpg",
-        text: "De poort van Nevermore vormt de mysterieuze ingang van de academie en zet direct de donkere sfeer van de school neer."
-    },
-    {
-        title: "Nightshades Library",
-        image: "images/location2.jpg",
-        text: "Een verborgen en mysterieuze plek binnen Nevermore, verbonden aan de Nightshades en de geheimen van de school."
-    },
-    {
-        title: "Courtyard",
-        image: "images/location3.jpg",
-        text: "De courtyard is een centrale plek binnen Nevermore waar studenten samenkomen en waar de gotische sfeer van de school sterk naar voren komt."
-    }
+  {
+    title: "Nevermore Gate",
+    image: "images/location1.jpg",
+    text: "De mysterieuze ingang van Nevermore Academy."
+  },
+  {
+    title: "Nightshades Library",
+    image: "images/location2.jpg",
+    text: "Een verborgen plek vol geheimen binnen Nevermore."
+  },
+  {
+    title: "Courtyard",
+    image: "images/location3.jpg",
+    text: "Een centrale plek waar de gotische sfeer samenkomt."
+  }
 ];
 
 let currentLocation = 0;
 let locationInterval;
 
 function updateLocation() {
-    document.getElementById("locationTitle").textContent = locations[currentLocation].title;
-    document.getElementById("locationImage").src = locations[currentLocation].image;
-    document.getElementById("locationImage").alt = locations[currentLocation].title;
-    document.getElementById("locationText").textContent = locations[currentLocation].text;
+  const title = document.getElementById("locationTitle");
+  const image = document.getElementById("locationImage");
+  const text = document.getElementById("locationText");
+
+  if (title) title.textContent = locations[currentLocation].title;
+  if (image) {
+    image.src = locations[currentLocation].image;
+    image.alt = locations[currentLocation].title;
+  }
+  if (text) text.textContent = locations[currentLocation].text;
 }
 
 function startLocationTour() {
-    currentLocation = 0;
-    updateLocation();
+  currentLocation = 0;
+  updateLocation();
 
-    locationInterval = setInterval(() => {
-        if (currentLocation < locations.length - 1) {
-            currentLocation++;
-            updateLocation();
-        }
-    }, 4000); // elke 4 seconden nieuwe locatie
+  locationInterval = setInterval(() => {
+    if (currentLocation < locations.length - 1) {
+      currentLocation++;
+      updateLocation();
+    }
+  }, 4000);
 }
 
 function stopLocationTour() {
-    clearInterval(locationInterval);
+  clearInterval(locationInterval);
 }
 
-document.getElementById('infoBtn').addEventListener('click', () => {
-    showScreen('info');
-});
+const infoBtn = document.getElementById('infoBtn');
+if (infoBtn) {
+  infoBtn.addEventListener('click', () => showScreen('info'));
+}
 
-document.getElementById('backHomeFromInfo').addEventListener('click', () => {
-    showScreen('home');
-});
+const backHomeFromInfo = document.getElementById('backHomeFromInfo');
+if (backHomeFromInfo) {
+  backHomeFromInfo.addEventListener('click', () => showScreen('home'));
+}
 
-document.getElementById('startBtn').addEventListener('click', () => {
-    openPopup();
-});
+const startBtn = document.getElementById('startBtn');
+if (startBtn) {
+  startBtn.addEventListener('click', () => openPopup());
+}
 
-document.getElementById('yesBtn').addEventListener('click', () => {
+const yesBtn = document.getElementById('yesBtn');
+if (yesBtn) {
+  yesBtn.addEventListener('click', () => {
     closePopup();
     showScreen('welcome');
-});
+  });
+}
 
-document.getElementById('noBtn').addEventListener('click', () => {
-    closePopup();
-});
+const noBtn = document.getElementById('noBtn');
+if (noBtn) {
+  noBtn.addEventListener('click', () => closePopup());
+}
 
-document.getElementById('beginTourBtn').addEventListener('click', async () => {
+const beginTourBtn = document.getElementById('beginTourBtn');
+if (beginTourBtn) {
+  beginTourBtn.addEventListener('click', async () => {
     showScreen('tour');
     await startCamera();
     startLocationTour();
-});
+  });
+}
 
-document.getElementById('finishTourBtn').addEventListener('click', () => {
+const finishTourBtn = document.getElementById('finishTourBtn');
+if (finishTourBtn) {
+  finishTourBtn.addEventListener('click', () => {
     stopLocationTour();
     stopCamera();
     showScreen('end');
-});
+  });
+}
 
-document.getElementById('backToHomeBtn').addEventListener('click', () => {
-    showScreen('home');
-});
+const backToHomeBtn = document.getElementById('backToHomeBtn');
+if (backToHomeBtn) {
+  backToHomeBtn.addEventListener('click', () => showScreen('home'));
+}
